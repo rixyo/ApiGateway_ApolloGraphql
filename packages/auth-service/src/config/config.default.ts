@@ -12,6 +12,9 @@ export const DEFAULT_CONFIG: ConfigData = {
     verifiedEmail: '',
   },
   */
+  admin: {
+    secretKey: process.env.ADMIN_SECRET,
+  },
   auth: {
     jwtSecret: '',
     expireIn: 0,

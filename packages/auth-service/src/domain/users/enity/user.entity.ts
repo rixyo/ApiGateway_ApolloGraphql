@@ -21,7 +21,7 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255, select: true, unique: true })
   public username!: string;
 
-  @Column({ type: 'jsonb', default: [] })
+  @Column({ type: 'jsonb', default: ['user'] })
   public permissions!: string[];
 
   @Column({ type: 'varchar', length: 255, select: true })

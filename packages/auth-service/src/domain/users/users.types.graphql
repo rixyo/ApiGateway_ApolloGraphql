@@ -6,8 +6,14 @@ type Query {
   forgotPassword(email: String): Boolean
 }
 
+type Messages {
+  message: String!
+}
+
 type Mutation {
   createUser(createUserInput: CreateUserInput): User!
+  deleteUsers: Messages!
+  createAdmin(createAdminInput: CreateAdminInput): User!
   updateUser(fieldsToUpdate: UpdateUserInput!, username: String): User!
   addAdminPermission(username: String!): User!
   removeAdminPermission(username: String!): User!
@@ -27,6 +33,13 @@ input CreateUserInput {
   username: String!
   email: String!
   password: String!
+}
+input CreateAdminInput {
+  username: String!
+  email: String!
+  password: String!
+  secretKey: String!
+
 }
 
 input UpdateUserInput {

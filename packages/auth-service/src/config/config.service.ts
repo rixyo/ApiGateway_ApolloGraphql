@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { urlJoin } from 'url-join-ts';
 import { DEFAULT_CONFIG } from './config.default';
-import { ConfigData, ConfigDBData, AuthConfig } from './config.interface';
+import {
+  ConfigData,
+  ConfigDBData,
+  AuthConfig,
+  AdminConfig,
+} from './config.interface';
 
 /**
  * Provides a means to access the application configuration.
@@ -29,6 +34,7 @@ export class ConfigService {
       logLevel: env.LOG_LEVEL || DEFAULT_CONFIG.logLevel,
       debug: env.DEBUG || 'qapi:*',
       newRelicKey: env.NEW_RELIC_KEY || DEFAULT_CONFIG.newRelicKey,
+      admin: this.parseAdminConfigFromEnv(env),
       //sendGrid: this.parseSendGridConfigFromEnv(env),
       auth: this.parseAuthConfigFromEnv(env),
     };
@@ -40,6 +46,12 @@ export class ConfigService {
       expireIn: Number(env.JWT_EXPIRE_IN) || 268000,
     };
   }
+  private parseAdminConfigFromEnv(env: NodeJS.ProcessEnv): AdminConfig {
+    return {
+      secretKey: env.ADMIN_SECRET || '',
+    };
+  }
+
   /* private parseSendGridConfigFromEnv(env: NodeJS.ProcessEnv): SendGridConfig {
     return {
       apiKey: env.SENDGRID_API_KEY || '',

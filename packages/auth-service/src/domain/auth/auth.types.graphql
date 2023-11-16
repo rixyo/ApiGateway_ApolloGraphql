@@ -1,5 +1,5 @@
 type Query {
-  login(user: LoginUserInput!): LoginResult!
+  login(loginUserInput: LoginUserInput!): LoginResult!
   refreshToken: String!
 }
 
@@ -9,7 +9,6 @@ type LoginResult {
 }
 
 input LoginUserInput {
-  username: String
   email: String
   password: String!
 }

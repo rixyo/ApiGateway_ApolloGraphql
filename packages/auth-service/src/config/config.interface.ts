@@ -15,6 +15,9 @@ export interface AuthConfig {
   jwtSecret: string;
   expireIn: number;
 }
+export interface AdminConfig {
+  secretKey: string;
+}
 /**
  * Configuration data for the app.
  */
@@ -30,6 +33,7 @@ export interface ConfigData {
   port: number;
 
   auth: AuthConfig;
+  admin: AdminConfig;
 
   /** Database connection details. */
   db: ConfigDBData;

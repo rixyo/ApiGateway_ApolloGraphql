@@ -6,6 +6,7 @@
 *.njsproj
 *.sln
 *.sw?
+users_database.session.sql
 
 .DS_Store
 node_modules

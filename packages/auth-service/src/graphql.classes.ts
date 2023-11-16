@@ -9,7 +9,6 @@
 /* eslint-disable */
 
 export class LoginUserInput {
-    username?: Nullable<string>;
     email?: Nullable<string>;
     password: string;
 }
@@ -18,6 +17,13 @@ export class CreateUserInput {
     username: string;
     email: string;
     password: string;
+}
+
+export class CreateAdminInput {
+    username: string;
+    email: string;
+    password: string;
+    secretKey: string;
 }
 
 export class UpdateUserInput {
@@ -33,7 +39,7 @@ export class UpdatePasswordInput {
 }
 
 export abstract class IQuery {
-    abstract login(user: LoginUserInput): LoginResult | Promise<LoginResult>;
+    abstract login(loginUserInput: LoginUserInput): LoginResult | Promise<LoginResult>;
 
     abstract refreshToken(): string | Promise<string>;
 
@@ -49,8 +55,16 @@ export class LoginResult {
     token: string;
 }
 
+export class Messages {
+    message: string;
+}
+
 export abstract class IMutation {
     abstract createUser(createUserInput?: Nullable<CreateUserInput>): User | Promise<User>;
+
+    abstract deleteUsers(): Messages | Promise<Messages>;
+
+    abstract createAdmin(createAdminInput?: Nullable<CreateAdminInput>): User | Promise<User>;
 
     abstract updateUser(fieldsToUpdate: UpdateUserInput, username?: Nullable<string>): User | Promise<User>;
 

@@ -14,8 +14,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: configService.get().auth.jwtSecret,
     });
   }
-
-  // Documentation for this here: https://www.npmjs.com/package/passport-jwt
   async validate(payload: JwtPayload) {
     // This is called to validate the user in the token exists
     const user = await this.authService.validateJwtPayload(payload);
